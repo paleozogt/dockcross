@@ -265,6 +265,26 @@ jobs:
       - save_cache:
           key: linux-ppc64le-assets-{{ .Revision }}
           paths: ~/docker/linux-ppc64le.tar
+  linux-ppc64:
+    <<: *build-settings
+    steps:
+      - restore_cache:
+          key: base-assets-{{ .Revision }}
+      - run:
+         name: linux-ppc64 build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make linux-ppc64
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-ppc64' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64)
+           docker save -o ~/docker/linux-ppc64.tar paleozogt/dockcross:linux-ppc64 $tagged
+      - run:
+         name: linux-ppc64 test
+         command: |
+           make linux-ppc64.test
+      - save_cache:
+          key: linux-ppc64-assets-{{ .Revision }}
+          paths: ~/docker/linux-ppc64.tar
   linux-x64:
     <<: *build-settings
     steps:
@@ -672,6 +692,18 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
+          key: linux-ppc64-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy linux-ppc64
+          command: |
+            docker load -i ~/docker/linux-ppc64.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push paleozogt/dockcross:linux-ppc64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-ppc64' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64)
+              docker push $tagged
+            fi
+      - restore_cache:
           key: linux-x64-assets-{{ .Revision }}
       - deploy:
           name: Deploy linux-x64
@@ -855,6 +887,9 @@ workflows:
         - linux-ppc64le:
             requires:
               - base
+        - linux-ppc64:
+            requires:
+              - base
         - linux-x64:
             requires:
               - base
@@ -908,6 +943,7 @@ workflows:
               #- linux-mipsel
               - linux-s390x
               - linux-ppc64le
+              - linux-ppc64
               - linux-x64
               - linux-x86
               - manylinux1-x64
