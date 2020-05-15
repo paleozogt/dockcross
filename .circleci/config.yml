@@ -14,7 +14,7 @@ jobs:
            docker pull debian:stretch-slim
            make base
            mkdir -p ~/docker
-           docker save -o ~/docker/base.tar debian:stretch-slim dockcross/base:latest
+           docker save -o ~/docker/base.tar debian:stretch-slim paleozogt/dockcross:base
       - run:
          name: base test
          command: |
@@ -35,8 +35,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make android-arm
-           tagged=$(docker images -q -f 'since=dockcross/android-arm:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm)
-           docker save -o ~/docker/android-arm.tar dockcross/android-arm:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:android-arm' --format '{{.Repository}}:{{.Tag}}' | grep android-arm)
+           docker save -o ~/docker/android-arm.tar paleozogt/dockcross:android-arm $tagged
       - run:
          name: android-arm test
          command: |
@@ -55,8 +55,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make android-arm64
-           tagged=$(docker images -q -f 'since=dockcross/android-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm64)
-           docker save -o ~/docker/android-arm64.tar dockcross/android-arm64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:android-arm64' --format '{{.Repository}}:{{.Tag}}' | grep android-arm64)
+           docker save -o ~/docker/android-arm64.tar paleozogt/dockcross:android-arm64 $tagged
       - run:
          name: android-arm64 test
          command: |
@@ -75,8 +75,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make web-wasm
-           tagged=$(docker images -q -f 'since=dockcross/web-wasm:latest' --format '{{.Repository}}:{{.Tag}}' | grep web-wasm)
-           docker save -o ~/docker/web-wasm.tar dockcross/web-wasm:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:web-wasm' --format '{{.Repository}}:{{.Tag}}' | grep web-wasm)
+           docker save -o ~/docker/web-wasm.tar paleozogt/dockcross:web-wasm $tagged
       - run:
          name: web-wasm test
          command: |
@@ -95,8 +95,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-arm64
-           tagged=$(docker images -q -f 'since=dockcross/linux-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64)
-           docker save -o ~/docker/linux-arm64.tar dockcross/linux-arm64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-arm64' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64)
+           docker save -o ~/docker/linux-arm64.tar paleozogt/dockcross:linux-arm64 $tagged
       - run:
          name: linux-arm64 test
          command: |
@@ -115,8 +115,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-armv5
-           tagged=$(docker images -q -f 'since=dockcross/linux-armv5:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5)
-           docker save -o ~/docker/linux-armv5.tar dockcross/linux-armv5:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv5' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5)
+           docker save -o ~/docker/linux-armv5.tar paleozogt/dockcross:linux-armv5 $tagged
       - run:
          name: linux-armv5 test
          command: |
@@ -135,8 +135,8 @@ jobs:
         command: |
           docker load -i ~/docker/base.tar
           make linux-armv5-musl
-          tagged=$(docker images -q -f 'since=dockcross/linux-armv5-musl:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5-musl)
-          docker save -o ~/docker/linux-armv5-musl.tar dockcross/linux-armv5-musl:latest $tagged
+          tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv5-musl' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5-musl)
+          docker save -o ~/docker/linux-armv5-musl.tar paleozogt/dockcross:linux-armv5-musl $tagged
     - run:
         name: linux-armv5-musl test
         command: |
@@ -155,8 +155,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-armv6
-           tagged=$(docker images -q -f 'since=dockcross/linux-armv6:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6)
-           docker save -o ~/docker/linux-armv6.tar dockcross/linux-armv6:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv6' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6)
+           docker save -o ~/docker/linux-armv6.tar paleozogt/dockcross:linux-armv6 $tagged
       - run:
          name: linux-armv6 test
          command: |
@@ -175,8 +175,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-armv7
-           tagged=$(docker images -q -f 'since=dockcross/linux-armv7:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7)
-           docker save -o ~/docker/linux-armv7.tar dockcross/linux-armv7:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv7' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7)
+           docker save -o ~/docker/linux-armv7.tar paleozogt/dockcross:linux-armv7 $tagged
       - run:
          name: linux-armv7 test
          command: |
@@ -195,8 +195,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-armv7a
-           tagged=$(docker images -q -f 'since=dockcross/linux-armv7a:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7a)
-           docker save -o ~/docker/linux-armv7a.tar dockcross/linux-armv7a:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv7a' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7a)
+           docker save -o ~/docker/linux-armv7a.tar paleozogt/dockcross:linux-armv7a $tagged
       - run:
          name: linux-armv7a test
          command: |
@@ -216,8 +216,8 @@ jobs:
          #command: |
            #docker load -i ~/docker/base.tar
            #make linux-mipsel
-           #tagged=$(docker images -q -f 'since=dockcross/linux-mipsel:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-mipsel)
-           #docker save -o ~/docker/linux-mipsel.tar dockcross/linux-mipsel:latest $tagged
+           #tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-mipsel' --format '{{.Repository}}:{{.Tag}}' | grep linux-mipsel)
+           #docker save -o ~/docker/linux-mipsel.tar paleozogt/dockcross:linux-mipsel $tagged
       #- run:
          #name: linux-mipsel test
          #command: |
@@ -236,8 +236,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-s390x
-           tagged=$(docker images -q -f 'since=dockcross/linux-s390x:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
-           docker save -o ~/docker/linux-s390x.tar dockcross/linux-s390x:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-s390x' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
+           docker save -o ~/docker/linux-s390x.tar paleozogt/dockcross:linux-s390x $tagged
       - run:
          name: linux-s390x test
          command: |
@@ -256,8 +256,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-ppc64le
-           tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
-           docker save -o ~/docker/linux-ppc64le.tar dockcross/linux-ppc64le:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-ppc64le' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
+           docker save -o ~/docker/linux-ppc64le.tar paleozogt/dockcross:linux-ppc64le $tagged
       - run:
          name: linux-ppc64le test
          command: |
@@ -276,8 +276,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-x64
-           tagged=$(docker images -q -f 'since=dockcross/linux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x64)
-           docker save -o ~/docker/linux-x64.tar dockcross/linux-x64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-x64' --format '{{.Repository}}:{{.Tag}}' | grep linux-x64)
+           docker save -o ~/docker/linux-x64.tar paleozogt/dockcross:linux-x64 $tagged
       - run:
          name: linux-x64 test
          command: |
@@ -296,8 +296,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-x86
-           tagged=$(docker images -q -f 'since=dockcross/linux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x86)
-           docker save -o ~/docker/linux-x86.tar dockcross/linux-x86:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-x86' --format '{{.Repository}}:{{.Tag}}' | grep linux-x86)
+           docker save -o ~/docker/linux-x86.tar paleozogt/dockcross:linux-x86 $tagged
       - run:
          name: linux-x86 test
          command: |
@@ -316,8 +316,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make manylinux1-x64
-           tagged=$(docker images -q -f 'since=dockcross/manylinux1-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x64)
-           docker save -o ~/docker/manylinux1-x64.tar dockcross/manylinux1-x64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux1-x64' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x64)
+           docker save -o ~/docker/manylinux1-x64.tar paleozogt/dockcross:manylinux1-x64 $tagged
       - run:
          name: manylinux1-x64 test
          command: |
@@ -336,8 +336,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make manylinux1-x86
-           tagged=$(docker images -q -f 'since=dockcross/manylinux1-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x86)
-           docker save -o ~/docker/manylinux1-x86.tar dockcross/manylinux1-x86:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux1-x86' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x86)
+           docker save -o ~/docker/manylinux1-x86.tar paleozogt/dockcross:manylinux1-x86 $tagged
       - run:
          name: manylinux1-x86 test
          command: |
@@ -356,8 +356,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make manylinux2010-x64
-           tagged=$(docker images -q -f 'since=dockcross/manylinux2010-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x64)
-           docker save -o ~/docker/manylinux2010-x64.tar dockcross/manylinux2010-x64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux2010-x64' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x64)
+           docker save -o ~/docker/manylinux2010-x64.tar paleozogt/dockcross:manylinux2010-x64 $tagged
       - run:
          name: manylinux2010-x64 test
          command: |
@@ -376,8 +376,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make manylinux2010-x86
-           tagged=$(docker images -q -f 'since=dockcross/manylinux2010-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x86)
-           docker save -o ~/docker/manylinux2010-x86.tar dockcross/manylinux2010-x86:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux2010-x86' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x86)
+           docker save -o ~/docker/manylinux2010-x86.tar paleozogt/dockcross:manylinux2010-x86 $tagged
       - run:
          name: manylinux2010-x86 test
          command: |
@@ -396,8 +396,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make manylinux2014-x64
-           tagged=$(docker images -q -f 'since=dockcross/manylinux2014-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2014-x64)
-           docker save -o ~/docker/manylinux2014-x64.tar dockcross/manylinux2014-x64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux2014-x64' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2014-x64)
+           docker save -o ~/docker/manylinux2014-x64.tar paleozogt/dockcross:manylinux2014-x64 $tagged
       - run:
          name: manylinux2014-x64 test
          command: |
@@ -416,8 +416,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-static-x64
-           tagged=$(docker images -q -f 'since=dockcross/windows-static-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64)
-           docker save -o ~/docker/windows-static-x64.tar dockcross/windows-static-x64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-static-x64' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64)
+           docker save -o ~/docker/windows-static-x64.tar paleozogt/dockcross:windows-static-x64 $tagged
       - run:
          name: windows-static-x64 test
          command: |
@@ -436,8 +436,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-static-x64-posix
-           tagged=$(docker images -q -f 'since=dockcross/windows-static-x64-posix:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64-posix)
-           docker save -o ~/docker/windows-static-x64-posix.tar dockcross/windows-static-x64-posix:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-static-x64-posix' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64-posix)
+           docker save -o ~/docker/windows-static-x64-posix.tar paleozogt/dockcross:windows-static-x64-posix $tagged
       - run:
          name: windows-static-x64-posix test
          command: |
@@ -456,8 +456,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-static-x86
-           tagged=$(docker images -q -f 'since=dockcross/windows-static-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x86)
-           docker save -o ~/docker/windows-static-x86.tar dockcross/windows-static-x86:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-static-x86' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x86)
+           docker save -o ~/docker/windows-static-x86.tar paleozogt/dockcross:windows-static-x86 $tagged
       - run:
          name: windows-static-x86 test
          command: |
@@ -476,8 +476,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-shared-x64
-           tagged=$(docker images -q -f 'since=dockcross/windows-shared-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64)
-           docker save -o ~/docker/windows-shared-x64.tar dockcross/windows-shared-x64:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-shared-x64' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64)
+           docker save -o ~/docker/windows-shared-x64.tar paleozogt/dockcross:windows-shared-x64 $tagged
       - run:
          name: windows-shared-x64 test
          command: |
@@ -496,8 +496,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-shared-x64-posix
-           tagged=$(docker images -q -f 'since=dockcross/windows-shared-x64-posix:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64-posix)
-           docker save -o ~/docker/windows-shared-x64-posix.tar dockcross/windows-shared-x64-posix:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-shared-x64-posix' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64-posix)
+           docker save -o ~/docker/windows-shared-x64-posix.tar paleozogt/dockcross:windows-shared-x64-posix $tagged
       - run:
          name: windows-shared-x64-posix test
          command: |
@@ -516,8 +516,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-shared-x86
-           tagged=$(docker images -q -f 'since=dockcross/windows-shared-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x86)
-           docker save -o ~/docker/windows-shared-x86.tar dockcross/windows-shared-x86:latest $tagged
+           tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-shared-x86' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x86)
+           docker save -o ~/docker/windows-shared-x86.tar paleozogt/dockcross:windows-shared-x86 $tagged
       - run:
          name: windows-shared-x86 test
          command: |
@@ -536,7 +536,7 @@ jobs:
             docker load -i ~/docker/base.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/base:latest
+              docker push paleozogt/dockcross:base
             fi
       - restore_cache:
           key: android-arm-assets-{{ .Revision }}
@@ -546,8 +546,8 @@ jobs:
             docker load -i ~/docker/android-arm.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/android-arm:latest
-              tagged=$(docker images -q -f 'since=dockcross/android-arm:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm)
+              docker push paleozogt/dockcross:android-arm
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:android-arm' --format '{{.Repository}}:{{.Tag}}' | grep android-arm)
               docker push $tagged
             fi
       - restore_cache:
@@ -558,8 +558,8 @@ jobs:
             docker load -i ~/docker/android-arm64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/android-arm64:latest
-              tagged=$(docker images -q -f 'since=dockcross/android-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm64)
+              docker push paleozogt/dockcross:android-arm64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:android-arm64' --format '{{.Repository}}:{{.Tag}}' | grep android-arm64)
               docker push $tagged
             fi
       - restore_cache:
@@ -570,8 +570,8 @@ jobs:
             docker load -i ~/docker/web-wasm.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/web-wasm:latest
-              tagged=$(docker images -q -f 'since=dockcross/web-wasm:latest' --format '{{.Repository}}:{{.Tag}}' | grep web-wasm)
+              docker push paleozogt/dockcross:web-wasm
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:web-wasm' --format '{{.Repository}}:{{.Tag}}' | grep web-wasm)
               docker push $tagged
             fi
       - restore_cache:
@@ -582,8 +582,8 @@ jobs:
             docker load -i ~/docker/linux-arm64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-arm64:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64)
+              docker push paleozogt/dockcross:linux-arm64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-arm64' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64)
               docker push $tagged
             fi
       - restore_cache:
@@ -594,8 +594,8 @@ jobs:
             docker load -i ~/docker/linux-armv5.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-armv5:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-armv5:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5)
+              docker push paleozogt/dockcross:linux-armv5
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv5' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5)
               docker push $tagged
             fi
       - restore_cache:
@@ -606,8 +606,8 @@ jobs:
             docker load -i ~/docker/linux-armv6.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-armv6:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-armv6:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6)
+              docker push paleozogt/dockcross:linux-armv6
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv6' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6)
               docker push $tagged
             fi
       - restore_cache:
@@ -618,8 +618,8 @@ jobs:
             docker load -i ~/docker/linux-armv7.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-armv7:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-armv7:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7)
+              docker push paleozogt/dockcross:linux-armv7
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv7' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7)
               docker push $tagged
             fi
       - restore_cache:
@@ -630,8 +630,8 @@ jobs:
             docker load -i ~/docker/linux-armv7a.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-armv7a:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-armv7a:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7a)
+              docker push paleozogt/dockcross:linux-armv7a
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-armv7a' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7a)
               docker push $tagged
             fi
       # Image build currently broken. See #209
@@ -643,8 +643,8 @@ jobs:
             #docker load -i ~/docker/linux-mipsel.tar
             #if [ "${CIRCLE_BRANCH}" == "master" ]; then
               #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              #docker push dockcross/linux-mipsel:latest
-              #tagged=$(docker images -q -f 'since=dockcross/linux-mipsel:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-mipsel)
+              #docker push paleozogt/dockcross:linux-mipsel
+              #tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-mipsel' --format '{{.Repository}}:{{.Tag}}' | grep linux-mipsel)
               #docker push $tagged
             #fi
       - restore_cache:
@@ -655,8 +655,8 @@ jobs:
             docker load -i ~/docker/linux-s390x.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-s390x:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-s390x:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
+              docker push paleozogt/dockcross:linux-s390x
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-s390x' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
               docker push $tagged
             fi
       - restore_cache:
@@ -667,8 +667,8 @@ jobs:
             docker load -i ~/docker/linux-ppc64le.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-ppc64le:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
+              docker push paleozogt/dockcross:linux-ppc64le
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-ppc64le' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
               docker push $tagged
             fi
       - restore_cache:
@@ -679,8 +679,8 @@ jobs:
             docker load -i ~/docker/linux-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-x64:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x64)
+              docker push paleozogt/dockcross:linux-x64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-x64' --format '{{.Repository}}:{{.Tag}}' | grep linux-x64)
               docker push $tagged
             fi
       - restore_cache:
@@ -691,8 +691,8 @@ jobs:
             docker load -i ~/docker/linux-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-x86:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x86)
+              docker push paleozogt/dockcross:linux-x86
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:linux-x86' --format '{{.Repository}}:{{.Tag}}' | grep linux-x86)
               docker push $tagged
             fi
       - restore_cache:
@@ -703,8 +703,8 @@ jobs:
             docker load -i ~/docker/manylinux1-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/manylinux1-x64:latest
-              tagged=$(docker images -q -f 'since=dockcross/manylinux1-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x64)
+              docker push paleozogt/dockcross:manylinux1-x64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux1-x64' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x64)
               docker push $tagged
             fi
       - restore_cache:
@@ -715,8 +715,8 @@ jobs:
             docker load -i ~/docker/manylinux1-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/manylinux1-x86:latest
-              tagged=$(docker images -q -f 'since=dockcross/manylinux1-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x86)
+              docker push paleozogt/dockcross:manylinux1-x86
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux1-x86' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x86)
               docker push $tagged
             fi
       - restore_cache:
@@ -727,8 +727,8 @@ jobs:
             docker load -i ~/docker/manylinux2010-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/manylinux2010-x64:latest
-              tagged=$(docker images -q -f 'since=dockcross/manylinux2010-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x64)
+              docker push paleozogt/dockcross:manylinux2010-x64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux2010-x64' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x64)
               docker push $tagged
             fi
       - restore_cache:
@@ -739,8 +739,8 @@ jobs:
             docker load -i ~/docker/manylinux2014-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/manylinux2014-x64:latest
-              tagged=$(docker images -q -f 'since=dockcross/manylinux2014-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2014-x64)
+              docker push paleozogt/dockcross:manylinux2014-x64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:manylinux2014-x64' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2014-x64)
               docker push $tagged
             fi
       - restore_cache:
@@ -751,8 +751,8 @@ jobs:
             docker load -i ~/docker/windows-static-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/windows-static-x64:latest
-              tagged=$(docker images -q -f 'since=dockcross/windows-static-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64)
+              docker push paleozogt/dockcross:windows-static-x64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-static-x64' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64)
               docker push $tagged
             fi
       - restore_cache:
@@ -763,8 +763,8 @@ jobs:
             docker load -i ~/docker/windows-static-x64-posix.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/windows-static-x64-posix:latest
-              tagged=$(docker images -q -f 'since=dockcross/windows-static-x64-posix:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64-posix)
+              docker push paleozogt/dockcross:windows-static-x64-posix
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-static-x64-posix' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x64-posix)
               docker push $tagged
             fi
       - restore_cache:
@@ -775,8 +775,8 @@ jobs:
             docker load -i ~/docker/windows-static-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/windows-static-x86:latest
-              tagged=$(docker images -q -f 'since=dockcross/windows-static-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x86)
+              docker push paleozogt/dockcross:windows-static-x86
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-static-x86' --format '{{.Repository}}:{{.Tag}}' | grep windows-static-x86)
               docker push $tagged
             fi
       - restore_cache:
@@ -787,8 +787,8 @@ jobs:
             docker load -i ~/docker/windows-shared-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/windows-shared-x64:latest
-              tagged=$(docker images -q -f 'since=dockcross/windows-shared-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64)
+              docker push paleozogt/dockcross:windows-shared-x64
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-shared-x64' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64)
               docker push $tagged
             fi
       - restore_cache:
@@ -799,8 +799,8 @@ jobs:
             docker load -i ~/docker/windows-shared-x64-posix.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/windows-shared-x64-posix:latest
-              tagged=$(docker images -q -f 'since=dockcross/windows-shared-x64-posix:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64-posix)
+              docker push paleozogt/dockcross:windows-shared-x64-posix
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-shared-x64-posix' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x64-posix)
               docker push $tagged
             fi
       - restore_cache:
@@ -811,8 +811,8 @@ jobs:
             docker load -i ~/docker/windows-shared-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/windows-shared-x86:latest
-              tagged=$(docker images -q -f 'since=dockcross/windows-shared-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x86)
+              docker push paleozogt/dockcross:windows-shared-x86
+              tagged=$(docker images -q -f 'since=paleozogt/dockcross:windows-shared-x86' --format '{{.Repository}}:{{.Tag}}' | grep windows-shared-x86)
               docker push $tagged
             fi
 
