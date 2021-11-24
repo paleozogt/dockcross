@@ -15,6 +15,7 @@ RUN \
     dirmngr \
     file \
     flex \
+    g++-10 \
     gettext \
     gzip \
     gnupg \
@@ -40,3 +41,11 @@ RUN \
     && apt-get clean autoclean --yes \
     && apt-get autoremove --yes \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+RUN cd /usr/bin \
+ && rm gcc g++ gcc-ar gcc-nm gcc-ranlib \
+ && ln -s gcc-10 gcc \
+ && ln -s g++-10 g++ \
+ && ln -s gcc-ar-10 gcc-ar \
+ && ln -s gcc-nm-10 gcc-nm \
+ && ln -s gcc-ranlib-10 gcc-ranlib \

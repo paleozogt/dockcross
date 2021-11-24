@@ -1,4 +1,4 @@
-ARG DOCKER_IMAGE=debian:bullseye-slim
+ARG DOCKER_IMAGE=paleozogt/debian:sid
 FROM $DOCKER_IMAGE
 
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
